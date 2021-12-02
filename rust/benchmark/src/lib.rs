@@ -2,7 +2,6 @@ macro_rules! drop_result {
     ($e:expr) => {{
         fn x() {
             let _ = $e();
-            ()
         }
 
         x
@@ -27,5 +26,7 @@ pub fn solvers() -> &'static [Soln] {
     &[
         soln!(aoc01::solve_a, "aoc01a"),
         soln!(aoc01::solve_b, "aoc01b"),
+        soln!(aoc02::solve_a, "aoc02a"),
+        soln!(aoc02::solve_b, "aoc02b"),
     ]
 }
