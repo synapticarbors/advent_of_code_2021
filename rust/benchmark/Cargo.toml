@@ -8,6 +8,7 @@ edition = "2018"
 [dependencies]
 aoc01 = { path = "../aoc01" }
 aoc02 = { path = "../aoc02" }
+aoc03 = { path = "../aoc03" }
 
 [lib]
 name = "benchmark"
