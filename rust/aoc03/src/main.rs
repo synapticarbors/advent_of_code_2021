@@ -64,35 +64,41 @@ pub fn solve_b() -> Result<u64> {
         .map(|line| u64::from_str_radix(line, 2))
         .collect::<Result<Vec<_>, _>>()?;
 
-    let oxygen = (0..width)
-        .rev()
-        .scan(dec.clone(), |candidates, i| {
-            let nnums = candidates.len();
+    let oxygen = (0..width).rev().fold(dec.clone(), |mut candidates, i| {
+        let nnums = candidates.len();
 
-            let ones_cnt = candidates.iter().filter(|&x| x >> i & 1 == 1).count();
-            let target = if ones_cnt >= (nnums - ones_cnt) { 1 } else { 0 };
+        if nnums == 1 {
+            return candidates;
+        }
 
-            candidates.retain(|&x| x >> i & 1 == target);
+        let ones_cnt = candidates.iter().filter(|&x| x >> i & 1 == 1).count();
+        let target = if ones_cnt >= (nnums - ones_cnt) { 1 } else { 0 };
 
-            candidates.first().copied()
-        })
-        .last()
-        .unwrap();
+        candidates.retain(|&x| x >> i & 1 == target);
 
-    let co2 = (0..width)
-        .rev()
-        .scan(dec, |candidates, i| {
-            let nnums = candidates.len();
+        candidates
+    });
 
-            let ones_cnt = candidates.iter().filter(|&x| x >> i & 1 == 1).count();
-            let target = if ones_cnt >= (nnums - ones_cnt) { 0 } else { 1 };
+    assert_eq!(oxygen.len(), 1);
+    let oxygen = oxygen[0];
 
-            candidates.retain(|&x| x >> i & 1 == target);
+    let co2 = (0..width).rev().fold(dec, |mut candidates, i| {
+        let nnums = candidates.len();
 
-            candidates.first().copied()
-        })
-        .last()
-        .unwrap();
+        if nnums == 1 {
+            return candidates;
+        }
+
+        let ones_cnt = candidates.iter().filter(|&x| x >> i & 1 == 1).count();
+        let target = if ones_cnt >= (nnums - ones_cnt) { 0 } else { 1 };
+
+        candidates.retain(|&x| x >> i & 1 == target);
+
+        candidates
+    });
+
+    assert_eq!(co2.len(), 1);
+    let co2 = co2[0];
 
     Ok(oxygen * co2)
 }
