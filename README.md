@@ -1,6 +1,6 @@
 [Advent of Code 2021](https://adventofcode.com/2021)
 
-After getting my 50 stars in [Advent of Code 2020](https://adventofcode.com/2020) using [Rust](https://www.rust-lang.org/), I'm back at it again in 2021
+After getting my 50 stars in [Advent of Code 2020](https://adventofcode.com/2020) using [Rust](https://www.rust-lang.org/), I'm back at it again in 2021.
 I still consider myself somewhat of a rust novice, so this code will probably be non-idiomatic and generally non-optimal. I spend most of my days writing
 Python, so this is just a fun exercise for the end of the year.
 
