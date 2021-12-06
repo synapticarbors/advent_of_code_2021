@@ -34,5 +34,7 @@ pub fn solvers() -> &'static [Soln] {
         soln!(aoc04::solve_b, "aoc04b"),
         soln!(aoc05::solve_a, "aoc05a"),
         soln!(aoc05::solve_b, "aoc05b"),
+        soln!(aoc06::solve_a, "aoc06a"),
+        soln!(aoc06::solve_b, "aoc06b"),
     ]
 }
