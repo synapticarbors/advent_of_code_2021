@@ -48,8 +48,9 @@ pub fn solve_b() -> Result<i64> {
 
     let n = x.len();
 
-    let mc = ((x.iter().sum::<i64>() as f64) / (n as f64)).ceil() as i64;
-    let mf = ((x.iter().sum::<i64>() as f64) / (n as f64)).floor() as i64;
+    let m = (x.iter().sum::<i64>() as f64) / (n as f64);
+    let mc = m.ceil() as i64;
+    let mf = m.floor() as i64;
 
     let (c1, c2) = x.iter().fold((0, 0), |mut acc, e| {
         let dxc = (e - mc).abs();
