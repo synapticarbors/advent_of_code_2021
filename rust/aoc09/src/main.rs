@@ -84,9 +84,10 @@ pub fn solve_b() -> Result<usize> {
     let ncols = grid.len() / nrows;
     let grid = Array::from_shape_vec((nrows, ncols), grid)?;
 
-    let adj = grid
-        .indexed_iter()
-        .fold(HashMap::new(), |mut acc: Graph, ((i, j), v)| {
+    // Build the adjacency list
+    let adj = grid.indexed_iter().fold(
+        HashMap::with_capacity(grid.len()),
+        |mut acc: Graph, ((i, j), v)| {
             if *v == 9 {
                 return acc;
             }
@@ -105,7 +106,10 @@ pub fn solve_b() -> Result<usize> {
             }
 
             acc
-        });
+        },
+    );
+
+    // Now find the connected components
     let mut visited = Array::from_elem((nrows, ncols), false);
     let mut ccmp = vec![];
 
