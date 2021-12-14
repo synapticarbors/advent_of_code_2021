@@ -54,9 +54,10 @@ fn parse_instructions(s: &str) -> IResult<&str, Instructions> {
     )(s)
 }
 
-fn parse_input(s: &'static str) -> Result<(Points, Instructions)> {
+fn parse_input(s: &str) -> Result<(Points, Instructions)> {
     let (_, (points, instructions)) =
-        separated_pair(parse_points, tag("\n\n"), parse_instructions)(s)?;
+        separated_pair(parse_points, tag("\n\n"), parse_instructions)(s)
+            .map_err(|e| e.map(|e| (e.input.to_string(), e.code)))?;
 
     Ok((points, instructions))
 }
