@@ -121,8 +121,7 @@ fn parse_input(s: &str) -> Result<Vec<Cuboid>> {
 }
 
 pub fn solve_a() -> Result<isize> {
-    let mut reboot_steps = parse_input(include_str!("../input"))?;
-    reboot_steps.sort_unstable_by(|a, b| a.y1.cmp(&b.y1));
+    let reboot_steps = parse_input(include_str!("../input"))?;
     let (dmin, dmax) = (-50, 50);
 
     let mut cuboid_union: Vec<Cuboid> = vec![];
@@ -150,8 +149,7 @@ pub fn solve_a() -> Result<isize> {
 }
 
 pub fn solve_b() -> Result<isize> {
-    let mut reboot_steps = parse_input(include_str!("../input"))?;
-    reboot_steps.sort_unstable_by(|a, b| a.y1.cmp(&b.y1));
+    let reboot_steps = parse_input(include_str!("../input"))?;
 
     let mut cuboid_union: Vec<Cuboid> = vec![];
     for rs in reboot_steps {
