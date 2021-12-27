@@ -15,11 +15,9 @@ pub fn main() -> Result<()> {
     Ok(())
 }
 
+#[inline]
 fn win2ix(x: &ArrayView2<bool>) -> usize {
-    x.iter()
-        .enumerate()
-        .map(|(i, b)| (*b as usize) << (8 - i))
-        .sum::<usize>()
+    x.iter().fold(0, |acc, &b| (acc << 1) ^ (b as usize))
 }
 
 fn enhance(
